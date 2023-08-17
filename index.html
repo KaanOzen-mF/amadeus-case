@@ -7,6 +7,77 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <main>
+      <div id="ticket-search-container">
+        <form id="search-form" action="">
+          <div class="ticket-way-container">
+            <input
+              type="radio"
+              id="one-way"
+              name="trip-type"
+              value="one-way"
+              required
+            />
+            <label for="one-way">One-Way</label><br />
+            <input
+              type="radio"
+              id="round-trip"
+              name="trip-type"
+              value="round-trip"
+              required
+            />
+            <label for="round-trip">Round Trip</label><br />
+          </div>
+          <div class="ticket-airport">
+            <div class="box-container">
+              <input
+                type="text"
+                placeholder="from"
+                id="from-box"
+                required
+                autocomplete="off"
+              />
+              <div class="result-box from-result"></div>
+            </div>
+
+            <div class="box-container">
+              <input
+                type="text"
+                placeholder="to"
+                id="to-box"
+                required
+                autocomplete="off"
+              />
+              <div class="result-box to-result"></div>
+            </div>
+          </div>
+
+          <div class="ticket-date">
+            <label for="trip" style="color: aliceblue">Trip Start:</label>
+            <input type="date" id="start" name="trip-start" required />
+            <input type="date" id="return" name="trip-return" disabled />
+            <label for="arrivial" style="color: aliceblue"
+              >Arrivial Time:</label
+            >
+            <input
+              type="date"
+              autocomplete="off"
+              id="arrivial-start"
+              name="arrivial-time"
+              required
+            />
+            <input
+              type="date"
+              id="arrivial-return"
+              name="arrivial-time"
+              disabled
+            />
+          </div>
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </main>
+
     <script src="index.js"></script>
   </body>
 </html>
