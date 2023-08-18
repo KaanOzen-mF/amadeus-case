@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -9,21 +10,25 @@ body {
 }
 
 /*Ticket Search Container Start*/
-#ticket-search-container {
+#flight-search-form {
   background-color: black;
   border-radius: 8px;
   padding: 24px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /*Airports Container Start*/
 .ticket-airport {
   display: flex;
+  padding-bottom: 12px;
 }
 
 .result-box ul {
   border-top: 1px solid #999;
-  padding: 15px 10px;
 }
 
 .result-box ul li {
@@ -40,23 +45,39 @@ body {
   max-height: 150px;
   overflow-y: scroll;
   background-color: aliceblue;
+  color: black;
 }
 /*Airports Container End*/
 
-/*Ticket Way Checkboxes Start*/
-.ticket-way-container {
+/*Date Container Start*/
+.date-container {
   display: flex;
   flex-direction: row;
-  padding-left: 12px;
+
+  padding-bottom: 12px;
+}
+/*Date Container End*/
+
+/*Checkbox Container Start*/
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 12px;
+}
+/*Checkbox Container End*/
+
+/*Result Container Start*/
+#results {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: #f0f0f0;
+  padding: 12px;
 }
 
-.ticket-way-container input {
-  padding-right: 12px;
+.flights-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-
-.ticket-way-container label {
-  color: whitesmoke;
-}
-/*Ticket Way Checkboxes End*/
-
-/*Ticket Search Container End*/
+/*Result Container End*/
