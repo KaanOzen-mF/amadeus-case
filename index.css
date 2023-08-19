@@ -35,6 +35,7 @@ label {
   width: 50%;
   padding: 12px;
   font-size: 18px;
+  font-family: "MaroonBold", sans-serif;
 }
 /*Airports Container Start*/
 .ticket-airport {

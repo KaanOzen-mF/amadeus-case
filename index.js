@@ -22,6 +22,11 @@ async function fetchApiData() {
     }
 
     const data = await response.json();
+
+    if (data.length === 0) {
+      resultsContainer.innerHTML = "No flights available.";
+    }
+
     return data;
   } catch (error) {
     console.error("Error fetching API data:", error);
@@ -35,28 +40,29 @@ oneWayCheckbox.addEventListener("change", () => {
   returnDateInput.value = ""; // Clear the return date value when disabling
 });
 
-const airportData = fetch(url)
-  .then((res) => res.json())
-  .then((data) => {
-    departureInput.onkeyup = function () {
-      let input = departureInput.value.toLowerCase();
-      let result = data.filter((airport) =>
-        airport.from.toLowerCase().includes(input)
-      );
-      result = removeDuplicates(result, "from");
-      display(result, "from");
-    };
+// Using the fetched data to filter and display airport suggestions
+const airportDataPromise = fetchApiData();
 
-    arrivalInput.onkeyup = function () {
-      let input = arrivalInput.value.toLowerCase();
-      let result = data.filter((airport) =>
-        airport.to.toLowerCase().includes(input)
-      );
-      result = removeDuplicates(result, "to");
-      display(result, "to");
-    };
-  });
-//sss
+airportDataPromise.then((data) => {
+  departureInput.onkeyup = function () {
+    let input = departureInput.value.toLowerCase();
+    let result = data.filter((airport) =>
+      airport.from.toLowerCase().includes(input)
+    );
+    result = removeDuplicates(result, "from");
+    display(result, "from");
+  };
+
+  arrivalInput.onkeyup = function () {
+    let input = arrivalInput.value.toLowerCase();
+    let result = data.filter((airport) =>
+      airport.to.toLowerCase().includes(input)
+    );
+    result = removeDuplicates(result, "to");
+    display(result, "to");
+  };
+});
+
 const loadingSpinner = document.getElementById("loading-spinner");
 
 flightSearchForm.addEventListener("submit", async (event) => {
