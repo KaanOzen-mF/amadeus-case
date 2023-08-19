@@ -9,12 +9,18 @@ const resultsContainer = document.getElementById("results");
 const departureResultBox = document.querySelector(".departure-box");
 const arrivalResultBox = document.querySelector(".arrival-box");
 
-// Function to fetch API data
+const url =
+  "https://64de0905825d19d9bfb1ec57.mockapi.io/flightsData/airlineData";
+
+//Fetch API Data
 async function fetchApiData() {
   try {
-    const response = await fetch(
-      "https://64de0905825d19d9bfb1ec57.mockapi.io/flightsData/airlineData"
-    );
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data from the server.");
+    }
+
     const data = await response.json();
     return data;
   } catch (error) {
@@ -29,9 +35,7 @@ oneWayCheckbox.addEventListener("change", () => {
   returnDateInput.value = ""; // Clear the return date value when disabling
 });
 
-const airportData = fetch(
-  "https://64de0905825d19d9bfb1ec57.mockapi.io/flightsData/airlineData"
-)
+const airportData = fetch(url)
   .then((res) => res.json())
   .then((data) => {
     departureInput.onkeyup = function () {
@@ -52,9 +56,13 @@ const airportData = fetch(
       display(result, "to");
     };
   });
+//sss
+const loadingSpinner = document.getElementById("loading-spinner");
 
 flightSearchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  //sss
+  loadingSpinner.style.display = "block";
   const departure = departureInput.value;
   const arrival = arrivalInput.value;
   const departureDate = departureDateInput.value;
@@ -130,23 +138,25 @@ flightSearchForm.addEventListener("submit", async (event) => {
       matchingFlights.forEach((flight) => {
         const flightInfo = `
         <div class="flights-info">
-          <p>Kalkış: ${flight.from}</p>
-          <p>Varış: ${flight.to}</p>
+          <p>Departure Airport: ${flight.from}</p>
+          <p>Arrival Airport: ${flight.to}</p>
           <p>Kalkış Tarihi: ${departureDate}</p>
-          <p>Varış Tarihi: ${new Date(flight.arrivalTime * 1000)
+          <p>Departure Time: ${new Date(flight.arrivalTime * 1000)
             .toISOString()
             .slice(0, 10)}</p>
-          <p>Fiyat: ${flight.price}</p>
-          <!-- EKLEME: Uçuş süresi -->
-          <p>Uçuş Süresi: ${flight.flightDuration} saat</p>
+          <p>Price: ${flight.price}</p>
+          <p>Flight Duration: ${flight.flightDuration} hour</p>
         </div>
       `;
+
         resultsContainer.innerHTML += flightInfo;
       });
     } else {
       resultsContainer.innerHTML = "Uygun uçuş bulunamadı.";
     }
   }
+  // Hide the loading spinner after displaying the flights or if no flights are found
+  loadingSpinner.style.display = "none";
 });
 
 function removeDuplicates(arr, key) {

@@ -11,19 +11,31 @@
       <div class="ticket-airport">
         <div class="box-container">
           <label for="departure">Departure Airport:</label>
-          <input type="text" id="departure" name="departure" required />
+          <input
+            type="text"
+            id="departure"
+            name="departure"
+            required
+            autocomplete="off"
+          />
           <div class="result-box departure-box"></div>
         </div>
 
         <div class="box-container">
           <label for="arrival">Arrival Airport:</label>
-          <input type="text" id="arrival" name="arrival" required />
+          <input
+            type="text"
+            id="arrival"
+            name="arrival"
+            required
+            autocomplete="off"
+          />
           <div class="result-box arrival-box"></div>
         </div>
       </div>
       <div class="date-container">
-        <div>
-          <label for="departure-date">Kalkış Tarihi:</label>
+        <div class="date-input">
+          <label for="departure-date">Departure Time:</label>
           <input
             type="date"
             id="departure-date"
@@ -31,8 +43,9 @@
             required
           />
         </div>
-        <div>
-          <label for="return-date">Varış Tarihi:</label>
+
+        <div class="date-input">
+          <label for="return-date">Return Time:</label>
           <input type="date" id="return-date" name="return-date" />
         </div>
       </div>
@@ -42,21 +55,25 @@
         <input type="checkbox" id="one-way" name="one-way" />
       </div>
 
-      <button type="submit">Ara</button>
+      <button type="submit" class="submit-button">Search</button>
     </form>
-    <div class="sort-buttons">
-      <button class="sort-button" data-sort-key="departureTime">
-        Kalkış Saati
-      </button>
-      <button class="sort-button" data-sort-key="arrivalTime">
-        Varış Saati
-      </button>
-      <button class="sort-button" data-sort-key="flightDuration">
-        Uçuş Süresi
-      </button>
-      <button class="sort-button" data-sort-key="price">Fiyat</button>
+    <div class="ticket-result">
+      <div class="sort-buttons">
+        <button class="sort-button" data-sort-key="departureTime">
+          Departure Time
+        </button>
+        <button class="sort-button" data-sort-key="arrivalTime">
+          Return Time
+        </button>
+        <button class="sort-button" data-sort-key="flightDuration">
+          Flight Duration
+        </button>
+        <button class="sort-button" data-sort-key="price">Price</button>
+      </div>
     </div>
+
     <div id="results"></div>
+    <div class="loading" id="loading-spinner"></div>
     <script src="index.js"></script>
   </body>
 </html>
