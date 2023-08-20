@@ -6,6 +6,137 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: black;
+}
+
+/*Home Html Section Start*/
+/* header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid whitesmoke;
+  height: 96px;
+}
+
+/* logo-container */
+.animation {
+  animation-name: move;
+  animation-iteration-count: infinite;
+  animation-duration: 15s;
+  width: 18px;
+  height: 6px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: -3.5px;
+  left: 0; /* Set the initial left position */
+  box-shadow: 0px 0px 15px rgb(249, 238, 169);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid whitesmoke;
+  height: 96px;
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  height: 64px;
+  margin-right: 10px;
+}
+
+.logo-container a {
+  text-decoration: none;
+  font-size: 38px;
+  font-family: "MaroonBold", sans-serif;
+  color: whitesmoke;
+  text-shadow: 0px 0px 15px rgb(249, 238, 169);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 24px;
+  font-family: "MaroonBold", sans-serif;
+  padding: 0 10px;
+}
+
+.navbar-links a:hover {
+  text-shadow: 0px 0px 15px rgb(249, 238, 169);
+  font-size: 28px;
+}
+
+@keyframes move {
+  0% {
+    left: 10%;
+  }
+  50% {
+    left: 90%;
+  }
+  100% {
+    left: 10%;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: black;
+}
+
+.flight-ads {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Set the desired height */
+  background-color: #f0f0f0;
+  margin: auto;
+  padding: auto;
+  width: 50%;
+  border-radius: 5px;
+  animation: pulse-animation 5s infinite ease-out;
+  box-shadow: 0px 0px 15px rgb(249, 238, 169);
+  -webkit-box-shadow: 0px 0px 15px rgb(249, 238, 169);
+  -moz-box-shadow: 0px 0px 15px rgb(249, 238, 169);
+}
+
+.flight-ads h1 {
+  text-align: center;
+  font-size: 48px;
+  font-family: "MaroonBold", sans-serif;
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(0.65);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.65);
+  }
+}
+/*Header Section End*/
+/*Home Html Section Start*/
+
+/*Index.html Section Start*/
+#container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,6 +144,7 @@ body {
   min-height: 100vh;
   background-color: #f0f0f0;
   font-family: "MaroonBold", sans-serif;
+  background-color: black;
 }
 
 /*Ticket Search Container Start*/
@@ -155,3 +287,5 @@ input[type="date"] {
     transform: rotate(360deg);
   }
 }
+
+/*Index.html Section End*/
