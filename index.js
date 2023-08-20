@@ -6,11 +6,18 @@ const returnDateInput = document.getElementById("return-date");
 const oneWayCheckbox = document.getElementById("one-way");
 const resultsContainer = document.getElementById("results");
 
+const loadingRing = document.querySelector(".ring");
+const loadingSpan = loadingRing.querySelector("span");
+const loadingSpinner = document.getElementById("loading-spinner");
 const departureResultBox = document.querySelector(".departure-box");
 const arrivalResultBox = document.querySelector(".arrival-box");
 
+const today = new Date().toISOString().split("T")[0];
+departureDateInput.min = today;
+returnDateInput.min = today;
+
 const url =
-  "https://64de0905825d19d9bfb1ec57.mockapi.io/flightsData/airlineData";
+  "https://64de0905825d19d9bfb1ec57.mockapi.io/flightsData/spaceShips";
 
 //Fetch API Data
 async function fetchApiData() {
@@ -63,12 +70,11 @@ airportDataPromise.then((data) => {
   };
 });
 
-const loadingSpinner = document.getElementById("loading-spinner");
-
+loadingRing.style.display = "none";
 flightSearchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  //sss
-  loadingSpinner.style.display = "block";
+
+  loadingRing.style.display = "block";
   const departure = departureInput.value;
   const arrival = arrivalInput.value;
   const departureDate = departureDateInput.value;
@@ -123,8 +129,7 @@ flightSearchForm.addEventListener("submit", async (event) => {
       }
     }
   }
-
-  // Sıralama butonlarına tıklanma olaylarına dinleyici ekleme
+  // Sorting button event listeners
   const sortButtons = document.querySelectorAll(".sort-button");
   sortButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -137,7 +142,7 @@ flightSearchForm.addEventListener("submit", async (event) => {
     displayFlights();
   });
 
-  // Uçuşları görüntülemek için fonksiyon
+  // Display Flights function
   function displayFlights() {
     resultsContainer.innerHTML = "";
     if (matchingFlights.length > 0) {
@@ -146,8 +151,8 @@ flightSearchForm.addEventListener("submit", async (event) => {
         <div class="flights-info">
           <p>Departure Airport: ${flight.from}</p>
           <p>Arrival Airport: ${flight.to}</p>
-          <p>Kalkış Tarihi: ${departureDate}</p>
-          <p>Departure Time: ${new Date(flight.arrivalTime * 1000)
+          <p>Departure Time: ${departureDate}</p>
+          <p>Return Departure Time: ${new Date(flight.arrivalTime * 1000)
             .toISOString()
             .slice(0, 10)}</p>
           <p>Price: ${flight.price}</p>
@@ -158,11 +163,11 @@ flightSearchForm.addEventListener("submit", async (event) => {
         resultsContainer.innerHTML += flightInfo;
       });
     } else {
-      resultsContainer.innerHTML = "Uygun uçuş bulunamadı.";
+      resultsContainer.innerHTML = "There is no flights.";
     }
   }
   // Hide the loading spinner after displaying the flights or if no flights are found
-  loadingSpinner.style.display = "none";
+  loadingRing.style.display = "none";
 });
 
 function removeDuplicates(arr, key) {
