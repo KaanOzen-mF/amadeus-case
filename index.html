@@ -7,73 +7,91 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <form id="flight-search-form" action="">
-      <div class="ticket-airport">
-        <div class="box-container">
-          <label for="departure">Departure Airport:</label>
-          <input
-            type="text"
-            id="departure"
-            name="departure"
-            required
-            autocomplete="off"
-          />
-          <div class="result-box departure-box"></div>
+    <header>
+      <div class="logo-container">
+        <img src="/img/Design 1 1.png" alt="" />
+        <a href="home.html">Aambius Space</a>
+      </div>
+      <div class="navbar-links">
+        <a href="home.html">Home</a>
+        <a href="index.html">Flights</a>
+      </div>
+      <div class="animation"></div>
+    </header>
+
+    <div id="container">
+      <form id="flight-search-form" action="">
+        <div class="ticket-airport">
+          <div class="box-container">
+            <label for="departure">Departure Airport:</label>
+            <input
+              type="text"
+              id="departure"
+              name="departure"
+              required
+              autocomplete="off"
+            />
+            <div class="result-box departure-box"></div>
+          </div>
+
+          <div class="box-container">
+            <label for="arrival">Arrival Airport:</label>
+            <input
+              type="text"
+              id="arrival"
+              name="arrival"
+              required
+              autocomplete="off"
+            />
+            <div class="result-box arrival-box"></div>
+          </div>
+        </div>
+        <div class="date-container">
+          <div class="date-input">
+            <label for="departure-date">Departure Time:</label>
+            <input
+              type="date"
+              id="departure-date"
+              name="departure-date"
+              required
+            />
+          </div>
+
+          <div class="date-input">
+            <label for="return-date">Return Time:</label>
+            <input type="date" id="return-date" name="return-date" />
+          </div>
         </div>
 
-        <div class="box-container">
-          <label for="arrival">Arrival Airport:</label>
-          <input
-            type="text"
-            id="arrival"
-            name="arrival"
-            required
-            autocomplete="off"
-          />
-          <div class="result-box arrival-box"></div>
+        <div class="checkbox-container">
+          <label for="one-way">One Way Ticket:</label>
+          <input type="checkbox" id="one-way" name="one-way" />
+        </div>
+
+        <button type="submit" class="submit-button">Search</button>
+      </form>
+      <div class="ticket-result">
+        <div class="sort-buttons">
+          <button class="sort-button" data-sort-key="departureTime" min="">
+            Departure Time
+          </button>
+          <button class="sort-button" data-sort-key="arrivalTime" min="">
+            Return Time
+          </button>
+          <button class="sort-button" data-sort-key="flightDuration">
+            Flight Duration
+          </button>
+          <button class="sort-button" data-sort-key="price">Price</button>
         </div>
       </div>
-      <div class="date-container">
-        <div class="date-input">
-          <label for="departure-date">Departure Time:</label>
-          <input
-            type="date"
-            id="departure-date"
-            name="departure-date"
-            required
-          />
-        </div>
 
-        <div class="date-input">
-          <label for="return-date">Return Time:</label>
-          <input type="date" id="return-date" name="return-date" />
-        </div>
-      </div>
-
-      <div class="checkbox-container">
-        <label for="one-way">Tek Yönlü Uçuş:</label>
-        <input type="checkbox" id="one-way" name="one-way" />
-      </div>
-
-      <button type="submit" class="submit-button">Search</button>
-    </form>
-    <div class="ticket-result">
-      <div class="sort-buttons">
-        <button class="sort-button" data-sort-key="departureTime">
-          Departure Time
-        </button>
-        <button class="sort-button" data-sort-key="arrivalTime">
-          Return Time
-        </button>
-        <button class="sort-button" data-sort-key="flightDuration">
-          Flight Duration
-        </button>
-        <button class="sort-button" data-sort-key="price">Price</button>
+      <div id="results"></div>
+      <div class="ring">
+        Loading
+        <span id="loading-spinner"></span>
       </div>
     </div>
 
-    <div id="results"></div>
-    <div class="loading" id="loading-spinner"></div>
     <script src="index.js"></script>
   </body>
 </html>
